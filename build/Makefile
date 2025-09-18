@@ -282,6 +282,32 @@ stress_test_hw_interfaces/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_hw_interfaces.dir/build.make CMakeFiles/stress_test_hw_interfaces.dir/build
 .PHONY : stress_test_hw_interfaces/fast
 
+#=============================================================================
+# Target rules for targets named test_noise_sim
+
+# Build rule for target.
+test_noise_sim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_noise_sim
+.PHONY : test_noise_sim
+
+# fast build rule for target.
+test_noise_sim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_noise_sim.dir/build.make CMakeFiles/test_noise_sim.dir/build
+.PHONY : test_noise_sim/fast
+
+#=============================================================================
+# Target rules for targets named stress_test_noise_sim
+
+# Build rule for target.
+stress_test_noise_sim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stress_test_noise_sim
+.PHONY : stress_test_noise_sim
+
+# fast build rule for target.
+stress_test_noise_sim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_noise_sim.dir/build.make CMakeFiles/stress_test_noise_sim.dir/build
+.PHONY : stress_test_noise_sim/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -353,6 +379,30 @@ tests/stress_test_hw_interfaces.s: tests/stress_test_hw_interfaces.cpp.s
 tests/stress_test_hw_interfaces.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_hw_interfaces.dir/build.make CMakeFiles/stress_test_hw_interfaces.dir/tests/stress_test_hw_interfaces.cpp.s
 .PHONY : tests/stress_test_hw_interfaces.cpp.s
+
+tests/stress_test_noise_sim.o: tests/stress_test_noise_sim.cpp.o
+.PHONY : tests/stress_test_noise_sim.o
+
+# target to build an object file
+tests/stress_test_noise_sim.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_noise_sim.dir/build.make CMakeFiles/stress_test_noise_sim.dir/tests/stress_test_noise_sim.cpp.o
+.PHONY : tests/stress_test_noise_sim.cpp.o
+
+tests/stress_test_noise_sim.i: tests/stress_test_noise_sim.cpp.i
+.PHONY : tests/stress_test_noise_sim.i
+
+# target to preprocess a source file
+tests/stress_test_noise_sim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_noise_sim.dir/build.make CMakeFiles/stress_test_noise_sim.dir/tests/stress_test_noise_sim.cpp.i
+.PHONY : tests/stress_test_noise_sim.cpp.i
+
+tests/stress_test_noise_sim.s: tests/stress_test_noise_sim.cpp.s
+.PHONY : tests/stress_test_noise_sim.s
+
+# target to generate assembly for a file
+tests/stress_test_noise_sim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_noise_sim.dir/build.make CMakeFiles/stress_test_noise_sim.dir/tests/stress_test_noise_sim.cpp.s
+.PHONY : tests/stress_test_noise_sim.cpp.s
 
 tests/stress_test_pid.o: tests/stress_test_pid.cpp.o
 .PHONY : tests/stress_test_pid.o
@@ -449,6 +499,30 @@ tests/test_hw_interfaces.s: tests/test_hw_interfaces.cpp.s
 tests/test_hw_interfaces.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hw_interfaces.dir/build.make CMakeFiles/test_hw_interfaces.dir/tests/test_hw_interfaces.cpp.s
 .PHONY : tests/test_hw_interfaces.cpp.s
+
+tests/test_noise_sim.o: tests/test_noise_sim.cpp.o
+.PHONY : tests/test_noise_sim.o
+
+# target to build an object file
+tests/test_noise_sim.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_noise_sim.dir/build.make CMakeFiles/test_noise_sim.dir/tests/test_noise_sim.cpp.o
+.PHONY : tests/test_noise_sim.cpp.o
+
+tests/test_noise_sim.i: tests/test_noise_sim.cpp.i
+.PHONY : tests/test_noise_sim.i
+
+# target to preprocess a source file
+tests/test_noise_sim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_noise_sim.dir/build.make CMakeFiles/test_noise_sim.dir/tests/test_noise_sim.cpp.i
+.PHONY : tests/test_noise_sim.cpp.i
+
+tests/test_noise_sim.s: tests/test_noise_sim.cpp.s
+.PHONY : tests/test_noise_sim.s
+
+# target to generate assembly for a file
+tests/test_noise_sim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_noise_sim.dir/build.make CMakeFiles/test_noise_sim.dir/tests/test_noise_sim.cpp.s
+.PHONY : tests/test_noise_sim.cpp.s
 
 tests/test_pid.o: tests/test_pid.cpp.o
 .PHONY : tests/test_pid.o
@@ -582,10 +656,12 @@ help:
 	@echo "... beamline_rt_sim"
 	@echo "... stress_test_clock"
 	@echo "... stress_test_hw_interfaces"
+	@echo "... stress_test_noise_sim"
 	@echo "... stress_test_pid"
 	@echo "... stress_test_ring_buffer"
 	@echo "... stress_test_watchdog"
 	@echo "... test_hw_interfaces"
+	@echo "... test_noise_sim"
 	@echo "... test_pid"
 	@echo "... test_ring_buffer"
 	@echo "... test_telemetry"
@@ -600,6 +676,9 @@ help:
 	@echo "... tests/stress_test_hw_interfaces.o"
 	@echo "... tests/stress_test_hw_interfaces.i"
 	@echo "... tests/stress_test_hw_interfaces.s"
+	@echo "... tests/stress_test_noise_sim.o"
+	@echo "... tests/stress_test_noise_sim.i"
+	@echo "... tests/stress_test_noise_sim.s"
 	@echo "... tests/stress_test_pid.o"
 	@echo "... tests/stress_test_pid.i"
 	@echo "... tests/stress_test_pid.s"
@@ -612,6 +691,9 @@ help:
 	@echo "... tests/test_hw_interfaces.o"
 	@echo "... tests/test_hw_interfaces.i"
 	@echo "... tests/test_hw_interfaces.s"
+	@echo "... tests/test_noise_sim.o"
+	@echo "... tests/test_noise_sim.i"
+	@echo "... tests/test_noise_sim.s"
 	@echo "... tests/test_pid.o"
 	@echo "... tests/test_pid.i"
 	@echo "... tests/test_pid.s"
