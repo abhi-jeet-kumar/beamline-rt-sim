@@ -8,6 +8,7 @@
 #include "../hw/simple_bpm.hpp"
 #include "../hw/simple_magnet.hpp"
 #include "../safety/machine_protection_system.hpp"
+#include "../realtime/performance_optimizer.hpp"
 #include <atomic>
 #include <string>
 #include <sstream>
@@ -44,6 +45,9 @@ struct RTLoop {
   
   // Machine Protection System
   MachineProtectionSystem mps;
+  
+  // Real-time Performance Optimizer
+  RealTimeOptimizer rt_optimizer;
 
   /**
    * @brief Constructor
@@ -63,6 +67,9 @@ struct RTLoop {
     mps.set_alarm_callback([](const std::string& message) {
       std::cout << "MPS ALARM: " << message << std::endl;
     });
+    
+    // Initialize real-time optimizations
+    rt_optimizer.initialize_realtime();
   }
 
   /**
@@ -112,6 +119,10 @@ struct RTLoop {
       }
       
       loop_count.fetch_add(1);
+      
+      // Record timing for performance analysis
+      double loop_time_us = std::chrono::duration<double, std::micro>(end - start).count();
+      rt_optimizer.record_timing(loop_time_us);
 
       // publish telemetry
       double t = std::chrono::duration<double>(end - t0).count();
@@ -182,6 +193,7 @@ struct RTLoop {
       }
       return "{\"ok\":true}";
     } else if (j["cmd"] == "get_status"){
+      auto rt_stats = rt_optimizer.get_statistics();
       json status = {
         {"ok", true},
         {"loop_frequency", hz},
@@ -191,10 +203,33 @@ struct RTLoop {
         {"emergency_stop", emergency_stop.load()},
         {"mps_safe", mps.is_beam_permitted()},
         {"mps_abort_count", mps.get_abort_count()},
+        {"rt_performance", {
+          {"avg_timing_us", rt_stats.avg_timing_us},
+          {"p99_jitter_us", rt_stats.p99_jitter_us},
+          {"cern_target_met", rt_stats.p99_jitter_us < 10.0},
+          {"rt_enabled", rt_stats.rt_enabled},
+          {"cpu_core", rt_stats.cpu_core}
+        }},
         {"pid_gains", {{"kp", pid.kp}, {"ki", pid.ki}, {"kd", pid.kd}}},
         {"setpoint", pid.setpoint}
       };
       return status.dump();
+    } else if (j["cmd"] == "get_performance"){
+      rt_optimizer.print_performance_report();
+      auto rt_stats = rt_optimizer.get_statistics();
+      json perf = {
+        {"ok", true},
+        {"sample_count", rt_stats.sample_count},
+        {"min_timing_us", rt_stats.min_timing_us},
+        {"max_timing_us", rt_stats.max_timing_us},
+        {"avg_timing_us", rt_stats.avg_timing_us},
+        {"p95_jitter_us", rt_stats.p95_jitter_us},
+        {"p99_jitter_us", rt_stats.p99_jitter_us},
+        {"cern_target_achieved", rt_stats.p99_jitter_us < 10.0},
+        {"rt_enabled", rt_stats.rt_enabled},
+        {"cpu_core", rt_stats.cpu_core}
+      };
+      return perf.dump();
     }
     return "{\"ok\":false}";
   }

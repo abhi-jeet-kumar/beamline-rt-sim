@@ -144,6 +144,12 @@ target_link_libraries(test_machine_protection PRIVATE Threads::Threads)
 target_include_directories(test_machine_protection PRIVATE src)
 add_test(NAME machine_protection COMMAND test_machine_protection)
 
+# Real-time Performance tests
+add_executable(test_realtime_performance tests/test_realtime_performance.cpp)
+target_link_libraries(test_realtime_performance PRIVATE Threads::Threads)
+target_include_directories(test_realtime_performance PRIVATE src)
+add_test(NAME realtime_performance COMMAND test_realtime_performance)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)
