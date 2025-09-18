@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/stress_test_hw_interfaces.dir/tests/stress_test_hw_interfaces.cpp.o -o stress_test_hw_interfaces

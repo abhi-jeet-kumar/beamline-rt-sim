@@ -66,4 +66,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/stress_test_pid.dir/DependInfo.cmake"
   "CMakeFiles/test_watchdog.dir/DependInfo.cmake"
   "CMakeFiles/stress_test_watchdog.dir/DependInfo.cmake"
+  "CMakeFiles/test_hw_interfaces.dir/DependInfo.cmake"
+  "CMakeFiles/stress_test_hw_interfaces.dir/DependInfo.cmake"
   )

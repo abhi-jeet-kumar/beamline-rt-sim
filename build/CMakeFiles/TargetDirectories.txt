@@ -8,6 +8,8 @@
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/stress_test_pid.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test_watchdog.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/stress_test_watchdog.dir
+/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test_hw_interfaces.dir
+/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/stress_test_hw_interfaces.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/edit_cache.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/rebuild_cache.dir

@@ -88,6 +88,16 @@ target_link_libraries(stress_test_watchdog PRIVATE Threads::Threads)
 target_include_directories(stress_test_watchdog PRIVATE src)
 add_test(NAME stress_watchdog COMMAND stress_test_watchdog)
 
+add_executable(test_hw_interfaces tests/test_hw_interfaces.cpp)
+target_link_libraries(test_hw_interfaces PRIVATE Threads::Threads)
+target_include_directories(test_hw_interfaces PRIVATE src)
+add_test(NAME hw_interfaces COMMAND test_hw_interfaces)
+
+add_executable(stress_test_hw_interfaces tests/stress_test_hw_interfaces.cpp)
+target_link_libraries(stress_test_hw_interfaces PRIVATE Threads::Threads)
+target_include_directories(stress_test_hw_interfaces PRIVATE src)
+add_test(NAME stress_hw_interfaces COMMAND stress_test_hw_interfaces)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)

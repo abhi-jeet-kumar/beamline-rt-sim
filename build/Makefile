@@ -256,6 +256,32 @@ stress_test_watchdog/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/build
 .PHONY : stress_test_watchdog/fast
 
+#=============================================================================
+# Target rules for targets named test_hw_interfaces
+
+# Build rule for target.
+test_hw_interfaces: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_hw_interfaces
+.PHONY : test_hw_interfaces
+
+# fast build rule for target.
+test_hw_interfaces/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hw_interfaces.dir/build.make CMakeFiles/test_hw_interfaces.dir/build
+.PHONY : test_hw_interfaces/fast
+
+#=============================================================================
+# Target rules for targets named stress_test_hw_interfaces
+
+# Build rule for target.
+stress_test_hw_interfaces: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stress_test_hw_interfaces
+.PHONY : stress_test_hw_interfaces
+
+# fast build rule for target.
+stress_test_hw_interfaces/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_hw_interfaces.dir/build.make CMakeFiles/stress_test_hw_interfaces.dir/build
+.PHONY : stress_test_hw_interfaces/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -303,6 +329,30 @@ tests/stress_test_clock.s: tests/stress_test_clock.cpp.s
 tests/stress_test_clock.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_clock.dir/build.make CMakeFiles/stress_test_clock.dir/tests/stress_test_clock.cpp.s
 .PHONY : tests/stress_test_clock.cpp.s
+
+tests/stress_test_hw_interfaces.o: tests/stress_test_hw_interfaces.cpp.o
+.PHONY : tests/stress_test_hw_interfaces.o
+
+# target to build an object file
+tests/stress_test_hw_interfaces.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_hw_interfaces.dir/build.make CMakeFiles/stress_test_hw_interfaces.dir/tests/stress_test_hw_interfaces.cpp.o
+.PHONY : tests/stress_test_hw_interfaces.cpp.o
+
+tests/stress_test_hw_interfaces.i: tests/stress_test_hw_interfaces.cpp.i
+.PHONY : tests/stress_test_hw_interfaces.i
+
+# target to preprocess a source file
+tests/stress_test_hw_interfaces.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_hw_interfaces.dir/build.make CMakeFiles/stress_test_hw_interfaces.dir/tests/stress_test_hw_interfaces.cpp.i
+.PHONY : tests/stress_test_hw_interfaces.cpp.i
+
+tests/stress_test_hw_interfaces.s: tests/stress_test_hw_interfaces.cpp.s
+.PHONY : tests/stress_test_hw_interfaces.s
+
+# target to generate assembly for a file
+tests/stress_test_hw_interfaces.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_hw_interfaces.dir/build.make CMakeFiles/stress_test_hw_interfaces.dir/tests/stress_test_hw_interfaces.cpp.s
+.PHONY : tests/stress_test_hw_interfaces.cpp.s
 
 tests/stress_test_pid.o: tests/stress_test_pid.cpp.o
 .PHONY : tests/stress_test_pid.o
@@ -375,6 +425,30 @@ tests/stress_test_watchdog.s: tests/stress_test_watchdog.cpp.s
 tests/stress_test_watchdog.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/tests/stress_test_watchdog.cpp.s
 .PHONY : tests/stress_test_watchdog.cpp.s
+
+tests/test_hw_interfaces.o: tests/test_hw_interfaces.cpp.o
+.PHONY : tests/test_hw_interfaces.o
+
+# target to build an object file
+tests/test_hw_interfaces.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hw_interfaces.dir/build.make CMakeFiles/test_hw_interfaces.dir/tests/test_hw_interfaces.cpp.o
+.PHONY : tests/test_hw_interfaces.cpp.o
+
+tests/test_hw_interfaces.i: tests/test_hw_interfaces.cpp.i
+.PHONY : tests/test_hw_interfaces.i
+
+# target to preprocess a source file
+tests/test_hw_interfaces.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hw_interfaces.dir/build.make CMakeFiles/test_hw_interfaces.dir/tests/test_hw_interfaces.cpp.i
+.PHONY : tests/test_hw_interfaces.cpp.i
+
+tests/test_hw_interfaces.s: tests/test_hw_interfaces.cpp.s
+.PHONY : tests/test_hw_interfaces.s
+
+# target to generate assembly for a file
+tests/test_hw_interfaces.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hw_interfaces.dir/build.make CMakeFiles/test_hw_interfaces.dir/tests/test_hw_interfaces.cpp.s
+.PHONY : tests/test_hw_interfaces.cpp.s
 
 tests/test_pid.o: tests/test_pid.cpp.o
 .PHONY : tests/test_pid.o
@@ -507,9 +581,11 @@ help:
 	@echo "... test"
 	@echo "... beamline_rt_sim"
 	@echo "... stress_test_clock"
+	@echo "... stress_test_hw_interfaces"
 	@echo "... stress_test_pid"
 	@echo "... stress_test_ring_buffer"
 	@echo "... stress_test_watchdog"
+	@echo "... test_hw_interfaces"
 	@echo "... test_pid"
 	@echo "... test_ring_buffer"
 	@echo "... test_telemetry"
@@ -521,6 +597,9 @@ help:
 	@echo "... tests/stress_test_clock.o"
 	@echo "... tests/stress_test_clock.i"
 	@echo "... tests/stress_test_clock.s"
+	@echo "... tests/stress_test_hw_interfaces.o"
+	@echo "... tests/stress_test_hw_interfaces.i"
+	@echo "... tests/stress_test_hw_interfaces.s"
 	@echo "... tests/stress_test_pid.o"
 	@echo "... tests/stress_test_pid.i"
 	@echo "... tests/stress_test_pid.s"
@@ -530,6 +609,9 @@ help:
 	@echo "... tests/stress_test_watchdog.o"
 	@echo "... tests/stress_test_watchdog.i"
 	@echo "... tests/stress_test_watchdog.s"
+	@echo "... tests/test_hw_interfaces.o"
+	@echo "... tests/test_hw_interfaces.i"
+	@echo "... tests/test_hw_interfaces.s"
 	@echo "... tests/test_pid.o"
 	@echo "... tests/test_pid.i"
 	@echo "... tests/test_pid.s"
