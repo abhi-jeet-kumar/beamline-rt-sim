@@ -59,4 +59,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/beamline_rt_sim.dir/DependInfo.cmake"
   "CMakeFiles/test_timing.dir/DependInfo.cmake"
   "CMakeFiles/test_ring_buffer.dir/DependInfo.cmake"
+  "CMakeFiles/test_pid.dir/DependInfo.cmake"
   )

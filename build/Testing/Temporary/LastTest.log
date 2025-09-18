@@ -1,19 +1,19 @@
-Start testing: Sep 18 12:50 IST
+Start testing: Sep 18 12:54 IST
 ----------------------------------------------------------
-1/2 Testing: timing
-1/2 Test: timing
+1/3 Testing: timing
+1/3 Test: timing
 Command: "/Users/abhijeet.kumar/beamline-rt-sim/build/test_timing"
 Directory: /Users/abhijeet.kumar/beamline-rt-sim/build
-"timing" start time: Sep 18 12:50 IST
+"timing" start time: Sep 18 12:54 IST
 Output:
 ----------------------------------------------------------
 Testing PeriodicClock timing accuracy...
 Test 1: 1kHz timing accuracy
   Expected total time: 1000000 μs
-  Actual total time: 1000204 μs
-  Timing error: 0.0204%
-  Periods within ±100μs: 98.1%
-  Jitter (std dev): 29.6076 μs
+  Actual total time: 1000202 μs
+  Timing error: 0.0202%
+  Periods within ±100μs: 95.5%
+  Jitter (std dev): 40.7652 μs
 
 Test 2: Period change functionality
   Period change test passed
@@ -22,22 +22,22 @@ Test 3: Time-to-next functionality
   Time-to-next test passed
 
 Test 4: High frequency (10kHz) short test
-  High frequency accuracy: 96%
+  High frequency accuracy: 99%
 
 ✅ All PeriodicClock tests passed!
 <end of output>
 Test time =   1.02 sec
 ----------------------------------------------------------
 Test Passed.
-"timing" end time: Sep 18 12:50 IST
+"timing" end time: Sep 18 12:54 IST
 "timing" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-2/2 Testing: ring_buffer
-2/2 Test: ring_buffer
+2/3 Testing: ring_buffer
+2/3 Test: ring_buffer
 Command: "/Users/abhijeet.kumar/beamline-rt-sim/build/test_ring_buffer"
 Directory: /Users/abhijeet.kumar/beamline-rt-sim/build
-"ring_buffer" start time: Sep 18 12:50 IST
+"ring_buffer" start time: Sep 18 12:54 IST
 Output:
 ----------------------------------------------------------
 Testing RingBuffer functionality...
@@ -53,20 +53,63 @@ Test 5: Clear functionality
   Clear functionality test passed
 Test 6: Thread safety
   Thread safety test passed
-  Consumer performed 1000 total element reads
+  Consumer performed 2000 total element reads
 Test 7: Performance benchmark
-  Performance: 0.217 ns per push operation
-  Throughput: 4.60829e+09 pushes per second
-  For_each: 3.2375 ns per element read
+  Performance: 0.178792 ns per push operation
+  Throughput: 5.59309e+09 pushes per second
+  For_each: 2.725 ns per element read
   Performance benchmark passed
 
 ✅ All RingBuffer tests passed!
 <end of output>
-Test time =   0.01 sec
+Test time =   0.13 sec
 ----------------------------------------------------------
 Test Passed.
-"ring_buffer" end time: Sep 18 12:50 IST
+"ring_buffer" end time: Sep 18 12:54 IST
 "ring_buffer" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Sep 18 12:50 IST
+3/3 Testing: pid
+3/3 Test: pid
+Command: "/Users/abhijeet.kumar/beamline-rt-sim/build/test_pid"
+Directory: /Users/abhijeet.kumar/beamline-rt-sim/build
+"pid" start time: Sep 18 12:54 IST
+Output:
+----------------------------------------------------------
+Testing PID controller functionality...
+Test 1: Proportional control
+  Proportional control test passed
+Test 2: Integral action
+  Final value: 0.795016
+  Steady-state error: 0.204984
+  Integral action test passed
+Test 3: Derivative action
+  Overshoot without D: -12.0409%
+  Overshoot with D: -11.8915%
+  Derivative action test passed
+Test 4: Anti-windup protection
+  Maximum integrator value: 0
+  Anti-windup protection test passed
+Test 5: Bumpless setpoint changes
+  Derivative before setpoint change: -10.0502
+  Derivative after setpoint change: 10.0503
+  Bumpless setpoint change test passed
+Test 6: Reset functionality
+  Reset functionality test passed
+Test 7: Integrator limits
+  Integrator limits test passed
+Test 8: Step response performance
+  Settling time (5% band): 0.5 seconds
+  Final error: 0
+  Step response performance test passed
+
+✅ All PID controller tests passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"pid" end time: Sep 18 12:54 IST
+"pid" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 18 12:54 IST
