@@ -41,15 +41,20 @@ target_include_directories(beamline_rt_sim PRIVATE src)
 # Enable testing
 enable_testing()
 
-# Test executables (will be added as we implement components)
-# add_executable(test_pid tests/test_pid.cpp src/core/pid.hpp)
-# add_executable(test_timing tests/test_timing.cpp src/core/clock.hpp)  
-# add_executable(test_limits tests/test_limits.cpp src/control/limits.hpp)
+# Test executables
+add_executable(test_timing tests/test_timing.cpp)
+target_link_libraries(test_timing PRIVATE Threads::Threads)
+target_include_directories(test_timing PRIVATE src)
+add_test(NAME timing COMMAND test_timing)
+
+# Additional tests (will be uncommented as we implement components)
+# add_executable(test_pid tests/test_pid.cpp)
+# add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_pid PRIVATE Threads::Threads)
-# target_link_libraries(test_timing PRIVATE Threads::Threads)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)
+# target_include_directories(test_pid PRIVATE src)
+# target_include_directories(test_limits PRIVATE src)
 # add_test(NAME pid COMMAND test_pid)
-# add_test(NAME timing COMMAND test_timing)
 # add_test(NAME limits COMMAND test_limits)
 
 # Tools (will be added later)

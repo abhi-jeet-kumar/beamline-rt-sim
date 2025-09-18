@@ -4,3 +4,5 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
+add_test([=[timing]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_timing")
+set_tests_properties([=[timing]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;48;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")

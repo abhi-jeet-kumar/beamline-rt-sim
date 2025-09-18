@@ -64,10 +64,12 @@ CMAKE_BINARY_DIR = /Users/abhijeet.kumar/beamline-rt-sim/build
 
 # The main recursive "all" target.
 all: CMakeFiles/beamline_rt_sim.dir/all
+all: CMakeFiles/test_timing.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/beamline_rt_sim.dir/codegen
+codegen: CMakeFiles/test_timing.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -76,6 +78,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/beamline_rt_sim.dir/clean
+clean: CMakeFiles/test_timing.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -109,6 +112,38 @@ CMakeFiles/beamline_rt_sim.dir/codegen:
 CMakeFiles/beamline_rt_sim.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/beamline_rt_sim.dir/build.make CMakeFiles/beamline_rt_sim.dir/clean
 .PHONY : CMakeFiles/beamline_rt_sim.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_timing.dir
+
+# All Build rule for target.
+CMakeFiles/test_timing.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=3,4 "Built target test_timing"
+.PHONY : CMakeFiles/test_timing.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_timing.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_timing.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_timing.dir/rule
+
+# Convenience name for target.
+test_timing: CMakeFiles/test_timing.dir/rule
+.PHONY : test_timing
+
+# codegen rule for target.
+CMakeFiles/test_timing.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=3,4 "Finished codegen for target test_timing"
+.PHONY : CMakeFiles/test_timing.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_timing.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/clean
+.PHONY : CMakeFiles/test_timing.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
