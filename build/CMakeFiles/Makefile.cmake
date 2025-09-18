@@ -70,4 +70,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/stress_test_hw_interfaces.dir/DependInfo.cmake"
   "CMakeFiles/test_noise_sim.dir/DependInfo.cmake"
   "CMakeFiles/stress_test_noise_sim.dir/DependInfo.cmake"
+  "CMakeFiles/test_hw_components.dir/DependInfo.cmake"
+  "CMakeFiles/stress_test_hw_components.dir/DependInfo.cmake"
   )

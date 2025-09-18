@@ -108,6 +108,16 @@ target_link_libraries(stress_test_noise_sim PRIVATE Threads::Threads)
 target_include_directories(stress_test_noise_sim PRIVATE src)
 add_test(NAME stress_noise_sim COMMAND stress_test_noise_sim)
 
+add_executable(test_hw_components tests/test_hw_components.cpp)
+target_link_libraries(test_hw_components PRIVATE Threads::Threads)
+target_include_directories(test_hw_components PRIVATE src)
+add_test(NAME hw_components COMMAND test_hw_components)
+
+add_executable(stress_test_hw_components tests/stress_test_hw_components.cpp)
+target_link_libraries(stress_test_hw_components PRIVATE Threads::Threads)
+target_include_directories(stress_test_hw_components PRIVATE src)
+add_test(NAME stress_hw_components COMMAND stress_test_hw_components)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)

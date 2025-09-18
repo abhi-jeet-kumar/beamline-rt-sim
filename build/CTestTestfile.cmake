@@ -30,3 +30,7 @@ add_test([=[noise_sim]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_noise
 set_tests_properties([=[noise_sim]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;104;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
 add_test([=[stress_noise_sim]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/stress_test_noise_sim")
 set_tests_properties([=[stress_noise_sim]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;109;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
+add_test([=[hw_components]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_hw_components")
+set_tests_properties([=[hw_components]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;114;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
+add_test([=[stress_hw_components]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/stress_test_hw_components")
+set_tests_properties([=[stress_hw_components]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;119;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")

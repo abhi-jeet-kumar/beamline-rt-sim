@@ -82,5 +82,17 @@
   "command": "/usr/bin/c++  -I/opt/homebrew/Cellar/zeromq/4.3.5_2/include -I/opt/homebrew/Cellar/libsodium/1.0.20/include -I/Users/abhijeet.kumar/beamline-rt-sim/src -O3 -DNDEBUG -std=gnu++20 -arch arm64 -o CMakeFiles/stress_test_noise_sim.dir/tests/stress_test_noise_sim.cpp.o -c /Users/abhijeet.kumar/beamline-rt-sim/tests/stress_test_noise_sim.cpp",
   "file": "/Users/abhijeet.kumar/beamline-rt-sim/tests/stress_test_noise_sim.cpp",
   "output": "CMakeFiles/stress_test_noise_sim.dir/tests/stress_test_noise_sim.cpp.o"
+},
+{
+  "directory": "/Users/abhijeet.kumar/beamline-rt-sim/build",
+  "command": "/usr/bin/c++  -I/opt/homebrew/Cellar/zeromq/4.3.5_2/include -I/opt/homebrew/Cellar/libsodium/1.0.20/include -I/Users/abhijeet.kumar/beamline-rt-sim/src -O3 -DNDEBUG -std=gnu++20 -arch arm64 -o CMakeFiles/test_hw_components.dir/tests/test_hw_components.cpp.o -c /Users/abhijeet.kumar/beamline-rt-sim/tests/test_hw_components.cpp",
+  "file": "/Users/abhijeet.kumar/beamline-rt-sim/tests/test_hw_components.cpp",
+  "output": "CMakeFiles/test_hw_components.dir/tests/test_hw_components.cpp.o"
+},
+{
+  "directory": "/Users/abhijeet.kumar/beamline-rt-sim/build",
+  "command": "/usr/bin/c++  -I/opt/homebrew/Cellar/zeromq/4.3.5_2/include -I/opt/homebrew/Cellar/libsodium/1.0.20/include -I/Users/abhijeet.kumar/beamline-rt-sim/src -O3 -DNDEBUG -std=gnu++20 -arch arm64 -o CMakeFiles/stress_test_hw_components.dir/tests/stress_test_hw_components.cpp.o -c /Users/abhijeet.kumar/beamline-rt-sim/tests/stress_test_hw_components.cpp",
+  "file": "/Users/abhijeet.kumar/beamline-rt-sim/tests/stress_test_hw_components.cpp",
+  "output": "CMakeFiles/stress_test_hw_components.dir/tests/stress_test_hw_components.cpp.o"
 }
 ]
