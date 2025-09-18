@@ -191,6 +191,45 @@ test_telemetry/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/build
 .PHONY : test_telemetry/fast
 
+#=============================================================================
+# Target rules for targets named stress_test_clock
+
+# Build rule for target.
+stress_test_clock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stress_test_clock
+.PHONY : stress_test_clock
+
+# fast build rule for target.
+stress_test_clock/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_clock.dir/build.make CMakeFiles/stress_test_clock.dir/build
+.PHONY : stress_test_clock/fast
+
+#=============================================================================
+# Target rules for targets named stress_test_ring_buffer
+
+# Build rule for target.
+stress_test_ring_buffer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stress_test_ring_buffer
+.PHONY : stress_test_ring_buffer
+
+# fast build rule for target.
+stress_test_ring_buffer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_ring_buffer.dir/build.make CMakeFiles/stress_test_ring_buffer.dir/build
+.PHONY : stress_test_ring_buffer/fast
+
+#=============================================================================
+# Target rules for targets named stress_test_pid
+
+# Build rule for target.
+stress_test_pid: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stress_test_pid
+.PHONY : stress_test_pid
+
+# fast build rule for target.
+stress_test_pid/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_pid.dir/build.make CMakeFiles/stress_test_pid.dir/build
+.PHONY : stress_test_pid/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -214,6 +253,78 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/beamline_rt_sim.dir/build.make CMakeFiles/beamline_rt_sim.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+tests/stress_test_clock.o: tests/stress_test_clock.cpp.o
+.PHONY : tests/stress_test_clock.o
+
+# target to build an object file
+tests/stress_test_clock.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_clock.dir/build.make CMakeFiles/stress_test_clock.dir/tests/stress_test_clock.cpp.o
+.PHONY : tests/stress_test_clock.cpp.o
+
+tests/stress_test_clock.i: tests/stress_test_clock.cpp.i
+.PHONY : tests/stress_test_clock.i
+
+# target to preprocess a source file
+tests/stress_test_clock.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_clock.dir/build.make CMakeFiles/stress_test_clock.dir/tests/stress_test_clock.cpp.i
+.PHONY : tests/stress_test_clock.cpp.i
+
+tests/stress_test_clock.s: tests/stress_test_clock.cpp.s
+.PHONY : tests/stress_test_clock.s
+
+# target to generate assembly for a file
+tests/stress_test_clock.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_clock.dir/build.make CMakeFiles/stress_test_clock.dir/tests/stress_test_clock.cpp.s
+.PHONY : tests/stress_test_clock.cpp.s
+
+tests/stress_test_pid.o: tests/stress_test_pid.cpp.o
+.PHONY : tests/stress_test_pid.o
+
+# target to build an object file
+tests/stress_test_pid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_pid.dir/build.make CMakeFiles/stress_test_pid.dir/tests/stress_test_pid.cpp.o
+.PHONY : tests/stress_test_pid.cpp.o
+
+tests/stress_test_pid.i: tests/stress_test_pid.cpp.i
+.PHONY : tests/stress_test_pid.i
+
+# target to preprocess a source file
+tests/stress_test_pid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_pid.dir/build.make CMakeFiles/stress_test_pid.dir/tests/stress_test_pid.cpp.i
+.PHONY : tests/stress_test_pid.cpp.i
+
+tests/stress_test_pid.s: tests/stress_test_pid.cpp.s
+.PHONY : tests/stress_test_pid.s
+
+# target to generate assembly for a file
+tests/stress_test_pid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_pid.dir/build.make CMakeFiles/stress_test_pid.dir/tests/stress_test_pid.cpp.s
+.PHONY : tests/stress_test_pid.cpp.s
+
+tests/stress_test_ring_buffer.o: tests/stress_test_ring_buffer.cpp.o
+.PHONY : tests/stress_test_ring_buffer.o
+
+# target to build an object file
+tests/stress_test_ring_buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_ring_buffer.dir/build.make CMakeFiles/stress_test_ring_buffer.dir/tests/stress_test_ring_buffer.cpp.o
+.PHONY : tests/stress_test_ring_buffer.cpp.o
+
+tests/stress_test_ring_buffer.i: tests/stress_test_ring_buffer.cpp.i
+.PHONY : tests/stress_test_ring_buffer.i
+
+# target to preprocess a source file
+tests/stress_test_ring_buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_ring_buffer.dir/build.make CMakeFiles/stress_test_ring_buffer.dir/tests/stress_test_ring_buffer.cpp.i
+.PHONY : tests/stress_test_ring_buffer.cpp.i
+
+tests/stress_test_ring_buffer.s: tests/stress_test_ring_buffer.cpp.s
+.PHONY : tests/stress_test_ring_buffer.s
+
+# target to generate assembly for a file
+tests/stress_test_ring_buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_ring_buffer.dir/build.make CMakeFiles/stress_test_ring_buffer.dir/tests/stress_test_ring_buffer.cpp.s
+.PHONY : tests/stress_test_ring_buffer.cpp.s
 
 tests/test_pid.o: tests/test_pid.cpp.o
 .PHONY : tests/test_pid.o
@@ -321,6 +432,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... beamline_rt_sim"
+	@echo "... stress_test_clock"
+	@echo "... stress_test_pid"
+	@echo "... stress_test_ring_buffer"
 	@echo "... test_pid"
 	@echo "... test_ring_buffer"
 	@echo "... test_telemetry"
@@ -328,6 +442,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... tests/stress_test_clock.o"
+	@echo "... tests/stress_test_clock.i"
+	@echo "... tests/stress_test_clock.s"
+	@echo "... tests/stress_test_pid.o"
+	@echo "... tests/stress_test_pid.i"
+	@echo "... tests/stress_test_pid.s"
+	@echo "... tests/stress_test_ring_buffer.o"
+	@echo "... tests/stress_test_ring_buffer.i"
+	@echo "... tests/stress_test_ring_buffer.s"
 	@echo "... tests/test_pid.o"
 	@echo "... tests/test_pid.i"
 	@echo "... tests/test_pid.s"

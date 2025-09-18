@@ -3,6 +3,9 @@
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test_ring_buffer.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test_pid.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test_telemetry.dir
+/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/stress_test_clock.dir
+/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/stress_test_ring_buffer.dir
+/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/stress_test_pid.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/test.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/edit_cache.dir
 /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles/rebuild_cache.dir

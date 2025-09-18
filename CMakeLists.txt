@@ -62,6 +62,22 @@ target_link_libraries(test_telemetry PRIVATE Threads::Threads)
 target_include_directories(test_telemetry PRIVATE src)
 add_test(NAME telemetry COMMAND test_telemetry)
 
+# Comprehensive Stress Tests
+add_executable(stress_test_clock tests/stress_test_clock.cpp)
+target_link_libraries(stress_test_clock PRIVATE Threads::Threads)
+target_include_directories(stress_test_clock PRIVATE src)
+add_test(NAME stress_clock COMMAND stress_test_clock)
+
+add_executable(stress_test_ring_buffer tests/stress_test_ring_buffer.cpp)
+target_link_libraries(stress_test_ring_buffer PRIVATE Threads::Threads)
+target_include_directories(stress_test_ring_buffer PRIVATE src)
+add_test(NAME stress_ring_buffer COMMAND stress_test_ring_buffer)
+
+add_executable(stress_test_pid tests/stress_test_pid.cpp)
+target_link_libraries(stress_test_pid PRIVATE Threads::Threads)
+target_include_directories(stress_test_pid PRIVATE src)
+add_test(NAME stress_pid COMMAND stress_test_pid)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)
