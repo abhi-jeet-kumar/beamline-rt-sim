@@ -53,3 +53,4 @@ ndebug_test*
 .Trashes
 ehthumbs.db
 Thumbs.db
+build/
