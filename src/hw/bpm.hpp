@@ -170,6 +170,19 @@ public:
     }
     
     /**
+     * @brief Inject position offset (for magnet coupling)
+     * @param o Offset in mm to inject
+     * 
+     * This method allows the control loop to simulate the effect
+     * of the magnet on beam position, creating closed-loop physics
+     */
+    void inject_offset(double o) {
+        // Add offset to current X position (magnet affects horizontal position)
+        double current_x = beam_position_x_.load(std::memory_order_relaxed);
+        beam_position_x_.store(current_x + o, std::memory_order_relaxed);
+    }
+    
+    /**
      * @brief Get beam current
      */
     double get_beam_current() const {

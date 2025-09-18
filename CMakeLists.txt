@@ -132,6 +132,12 @@ target_link_libraries(stress_test_hw_components PRIVATE Threads::Threads)
 target_include_directories(stress_test_hw_components PRIVATE src)
 add_test(NAME stress_hw_components COMMAND stress_test_hw_components)
 
+# Real-time loop test
+add_executable(test_rt_loop tests/test_rt_loop.cpp)
+target_link_libraries(test_rt_loop PRIVATE ${ZeroMQ_LDFLAGS} Threads::Threads)
+target_include_directories(test_rt_loop PRIVATE src)
+add_test(NAME rt_loop COMMAND test_rt_loop)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)

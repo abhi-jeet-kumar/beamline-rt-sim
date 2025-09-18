@@ -1,6 +1,6 @@
 #pragma once
-#include "../hw/isensor.hpp"
-#include "../hw/iactuator.hpp"
+#include "../hw/simple_isensor.hpp"
+#include "../hw/simple_iactuator.hpp"
 
 /**
  * @brief Control API for hardware abstraction
