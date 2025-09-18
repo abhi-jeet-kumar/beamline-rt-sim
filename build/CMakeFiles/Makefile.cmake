@@ -60,4 +60,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_timing.dir/DependInfo.cmake"
   "CMakeFiles/test_ring_buffer.dir/DependInfo.cmake"
   "CMakeFiles/test_pid.dir/DependInfo.cmake"
+  "CMakeFiles/test_telemetry.dir/DependInfo.cmake"
   )

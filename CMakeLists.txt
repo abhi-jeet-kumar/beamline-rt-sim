@@ -57,6 +57,11 @@ target_link_libraries(test_pid PRIVATE Threads::Threads)
 target_include_directories(test_pid PRIVATE src)
 add_test(NAME pid COMMAND test_pid)
 
+add_executable(test_telemetry tests/test_telemetry.cpp)
+target_link_libraries(test_telemetry PRIVATE Threads::Threads)
+target_include_directories(test_telemetry PRIVATE src)
+add_test(NAME telemetry COMMAND test_telemetry)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)

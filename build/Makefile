@@ -178,6 +178,19 @@ test_pid/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_pid.dir/build.make CMakeFiles/test_pid.dir/build
 .PHONY : test_pid/fast
 
+#=============================================================================
+# Target rules for targets named test_telemetry
+
+# Build rule for target.
+test_telemetry: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_telemetry
+.PHONY : test_telemetry
+
+# fast build rule for target.
+test_telemetry/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/build
+.PHONY : test_telemetry/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -250,6 +263,30 @@ tests/test_ring_buffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/tests/test_ring_buffer.cpp.s
 .PHONY : tests/test_ring_buffer.cpp.s
 
+tests/test_telemetry.o: tests/test_telemetry.cpp.o
+.PHONY : tests/test_telemetry.o
+
+# target to build an object file
+tests/test_telemetry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/tests/test_telemetry.cpp.o
+.PHONY : tests/test_telemetry.cpp.o
+
+tests/test_telemetry.i: tests/test_telemetry.cpp.i
+.PHONY : tests/test_telemetry.i
+
+# target to preprocess a source file
+tests/test_telemetry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/tests/test_telemetry.cpp.i
+.PHONY : tests/test_telemetry.cpp.i
+
+tests/test_telemetry.s: tests/test_telemetry.cpp.s
+.PHONY : tests/test_telemetry.s
+
+# target to generate assembly for a file
+tests/test_telemetry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/tests/test_telemetry.cpp.s
+.PHONY : tests/test_telemetry.cpp.s
+
 tests/test_timing.o: tests/test_timing.cpp.o
 .PHONY : tests/test_timing.o
 
@@ -286,6 +323,7 @@ help:
 	@echo "... beamline_rt_sim"
 	@echo "... test_pid"
 	@echo "... test_ring_buffer"
+	@echo "... test_telemetry"
 	@echo "... test_timing"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
@@ -296,6 +334,9 @@ help:
 	@echo "... tests/test_ring_buffer.o"
 	@echo "... tests/test_ring_buffer.i"
 	@echo "... tests/test_ring_buffer.s"
+	@echo "... tests/test_telemetry.o"
+	@echo "... tests/test_telemetry.i"
+	@echo "... tests/test_telemetry.s"
 	@echo "... tests/test_timing.o"
 	@echo "... tests/test_timing.i"
 	@echo "... tests/test_timing.s"

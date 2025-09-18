@@ -1,4 +1,5 @@
-timing 3 0.340132
-ring_buffer 2 0.0640422
-pid 1 0.00393313
+timing 4 0.25514
+ring_buffer 3 0.00191567
+pid 2 0.00250042
+telemetry 1 0.0158803
 ---

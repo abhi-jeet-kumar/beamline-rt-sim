@@ -10,3 +10,5 @@ add_test([=[ring_buffer]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_rin
 set_tests_properties([=[ring_buffer]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;53;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
 add_test([=[pid]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_pid")
 set_tests_properties([=[pid]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;58;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
+add_test([=[telemetry]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_telemetry")
+set_tests_properties([=[telemetry]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;63;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
