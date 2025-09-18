@@ -1,0 +1,651 @@
+BEAMLINE RT SIMULATOR - DETAILED TASK BREAKDOWN
+===============================================
+
+Based on technical_details.txt - Complete implementation roadmap with granular subtasks
+
+📋 PROJECT OVERVIEW:
+===================
+Deterministic C++ beamline control simulator with:
+- 1000 Hz real-time control loop (<1 ms period, <100 µs jitter p95)
+- PID feedback control (stabilize beam position to zero within 2s)
+- FESA-style hardware abstraction (BPM, BIC, Magnet simulation)
+- ZeroMQ IPC (REQ/REP commands, PUB/SUB telemetry)
+- PyQt operator console (live plots, controls, data logging)
+
+🎯 TARGETS TO ACHIEVE:
+=====================
+- Acquisition loop: 1000 Hz target, <1 ms period, <100 µs jitter p95
+- PID control: stabilize simulated beam position to zero setpoint within 2 s
+- IPC: ZeroMQ REQ/REP for control commands, PUB/SUB for telemetry
+- GUI: PyQt operator console with live charts, gain knobs, frequency control
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 1: BUILD SYSTEM AND PROJECT STRUCTURE
+==============================================
+Status: NEEDS VERIFICATION AND COMPLETION
+
+Subtasks:
+1.1 ✅ Create directory structure
+    - src/{core,hw,control,ipc}
+    - tests/
+    - tools/
+    - gui/
+    - third_party/
+    - cmake/
+
+1.2 ✅ Setup CMakeLists.txt with dependencies
+    - CMake 3.20+ requirement
+    - C++20 standard
+    - ZeroMQ integration via pkg-config
+    - Threading support
+    - nlohmann/json header-only library
+
+1.3 ⏳ Add FindZeroMQ.cmake or ensure pkg-config works
+    - Test ZeroMQ detection on different platforms
+    - Fallback to manual detection if pkg-config fails
+
+1.4 ⏳ Setup third_party dependencies
+    - nlohmann/json header download
+    - ZeroMQ linking verification
+
+Tests Required:
+- Build system test: cmake .. && make -j
+- Dependency test: verify all libraries link correctly
+- Cross-platform test: test on different systems
+
+Verification Criteria:
+- Clean build from scratch works
+- All dependencies found and linked
+- Executable runs without missing libraries
+
+Push Requirements:
+- Each subtask should build successfully
+- No broken commits that fail compilation
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 2: CORE PRIMITIVES IMPLEMENTATION
+==========================================
+Status: NEEDS IMPLEMENTATION ACCORDING TO SPEC
+
+Subtasks:
+2.1 ⏳ Implement PeriodicClock (src/core/clock.hpp)
+    - Exact spec: steady_clock, nanosecond precision
+    - wait_next() using sleep_until for drift compensation
+    - Period management and timing accuracy
+
+2.2 ⏳ Implement RingBuffer (src/core/ring_buffer.hpp)
+    - Template-based lock-free circular buffer
+    - Atomic head pointer for thread safety
+    - for_each iteration support
+
+2.3 ⏳ Implement PID Controller (src/core/pid.hpp)
+    - Standard PID form with anti-windup
+    - Integrator clamping
+    - Derivative on error (not setpoint) to prevent kick
+    - Output limiting with saturation handling
+
+2.4 ⏳ Implement TelemetrySample (src/core/telemetry.hpp)
+    - Exact fields: t_sec, pos, intensity, magnet_current, deadline_miss
+    - Efficient memory layout for high-frequency use
+
+2.5 ⏳ Implement Watchdog (src/core/watchdog.hpp)
+    - Template-based timing check
+    - Boolean tripped state
+    - Reset functionality
+    - Nanosecond budget tracking
+
+Tests Required:
+- test_timing.cpp: 1kHz accuracy, <100µs jitter validation
+- test_pid.cpp: Stability test with plant model (-0.4*u feedback)
+- test_ring_buffer.cpp: Thread safety and performance
+- test_watchdog.cpp: Deadline detection accuracy
+- test_telemetry.cpp: Data structure validation
+
+Verification Criteria:
+- PeriodicClock: >90% periods within ±100µs at 1kHz
+- PID: Convergence to <0.1 error within 1000 iterations
+- RingBuffer: Thread-safe operation verified
+- Watchdog: Accurate deadline detection
+- TelemetrySample: Correct field layout
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 3: HARDWARE SIMULATION LAYER
+=====================================
+Status: PARTIALLY IMPLEMENTED, NEEDS SPEC COMPLIANCE
+
+Subtasks:
+3.1 ⏳ Implement ISensor interface (src/hw/isensor.hpp)
+    - Pure virtual read() method
+    - Virtual destructor
+
+3.2 ⏳ Implement IActuator interface (src/hw/iactuator.hpp)
+    - Pure virtual set(double) and get() methods
+    - Virtual destructor
+
+3.3 ⏳ Implement Noise utilities (src/hw/sim_noise.hpp)
+    - Exact spec: mt19937 generator
+    - gauss() method with normal distribution
+    - poisson_mean() method for counting statistics
+
+3.4 ⏳ Implement BPM simulation (src/hw/bpm.hpp)
+    - Exact spec: 5 Hz oscillation (omega = 2*PI*5.0)
+    - Phase tracking with step_dt = 0.001
+    - inject_offset() method for magnet coupling
+    - Sine wave + offset + noise output
+
+3.5 ⏳ Implement BIC simulation (src/hw/bic.hpp)
+    - Poisson noise generation
+    - Configurable mean value (default 10000.0)
+    - Simple read() returning poisson_mean(mean)
+
+3.6 ⏳ Implement Magnet simulation (src/hw/magnet.hpp)
+    - Simple current storage (double current{0.0})
+    - set/get methods for current control
+    - Ready for BPM coupling via inject_offset
+
+Tests Required:
+- test_bpm.cpp: Oscillation frequency verification, offset injection
+- test_bic.cpp: Poisson statistics validation
+- test_magnet.cpp: Current set/get functionality
+- test_noise.cpp: Statistical properties of noise generators
+
+Verification Criteria:
+- BPM: 5 Hz oscillation detectable, offset injection works
+- BIC: Poisson distribution with correct mean/variance
+- Magnet: Accurate current tracking
+- All components: Interface compliance verified
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 4: CONTROL API AND LIMITS
+==================================
+Status: NEEDS IMPLEMENTATION PER SPEC
+
+Subtasks:
+4.1 ⏳ Implement Limits structure (src/control/limits.hpp)
+    - magnet_min = -2.0, magnet_max = 2.0 (exact spec)
+    - clamp(double v) method with range checking
+    - Return min/max if outside bounds, otherwise return v
+
+4.2 ⏳ Implement ControlAPI structure (src/control/api.hpp)
+    - References to ISensor& bpm, ISensor& bic, IActuator& magnet
+    - set_magnet(double v) wrapper
+    - get_magnet() wrapper
+    - read_pos() wrapper for bpm.read()
+    - read_intensity() wrapper for bic.read()
+
+Tests Required:
+- test_limits.cpp: Exact spec verification
+  * assert(L.clamp(-3.0) == -2.0)
+  * assert(L.clamp(3.0) == 2.0)
+  * assert(L.clamp(0.5) == 0.5)
+- test_control_api.cpp: Interface wrapping verification
+
+Verification Criteria:
+- Limits: Exact clamping behavior as specified
+- ControlAPI: All wrapper methods work correctly
+- Integration: Works with actual hardware components
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 5: IPC LAYER (ZEROMQ)
+=============================
+Status: NEEDS IMPLEMENTATION PER SPEC
+
+Subtasks:
+5.1 ⏳ Implement TelemetryPub (src/ipc/telemetry_pub.hpp)
+    - ZMQ_PUB socket on tcp://127.0.0.1:5556
+    - Topic "telemetry" with JSON payload
+    - send(const std::string& s) method
+    - Proper ZeroMQ context/socket management
+
+5.2 ⏳ Implement ControlRep (src/ipc/control_rep.hpp)
+    - ZMQ_REP socket on tcp://127.0.0.1:5555
+    - recv() method returning JSON string (blocking)
+    - reply(const std::string& s) method
+    - Proper resource cleanup
+
+5.3 ⏳ Define JSON message schemas
+    - Telemetry: {"t": <sec>, "pos": <double>, "intensity": <double>, "mag": <double>, "deadline_miss": <0|1>}
+    - Commands: set_pid, set_freq, set_setpoint, recommission
+
+Tests Required:
+- test_telemetry_pub.cpp: Message sending verification
+- test_control_rep.cpp: Command reception/response
+- test_ipc_integration.cpp: Full pub/sub + req/rep test
+
+Verification Criteria:
+- Messages sent/received correctly
+- JSON format compliance
+- No memory leaks in ZeroMQ usage
+- Proper socket binding/cleanup
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 6: REAL-TIME CONTROL LOOP
+==================================
+Status: NEEDS IMPLEMENTATION PER SPEC
+
+Subtasks:
+6.1 ⏳ Implement RTLoop structure (src/control/loop.hpp)
+    - ControlAPI&, BPM&, Magnet& references
+    - PID pid, Limits lim members
+    - atomic<bool> running, double hz members
+    - Constructor taking references
+
+6.2 ⏳ Implement run() template method
+    - Template<class Pub, class Rep> void run(Pub& pub, Rep& rep)
+    - PeriodicClock at calculated frequency
+    - Watchdog with period_ns budget
+    - Main control loop with exact sequence:
+      * Read sensors (pos, intensity)
+      * PID calculation
+      * Set magnet output
+      * Apply BPM offset injection (-0.4 * u)
+      * Watchdog check
+      * Publish telemetry JSON
+      * Non-blocking command handling
+
+6.3 ⏳ Implement handle_cmd() method
+    - JSON parsing with nlohmann/json
+    - Command handlers: set_pid, set_freq, set_setpoint, recommission
+    - Response generation
+    - Period update for frequency changes
+
+6.4 ⏳ Add physics coupling
+    - bpm_ref.inject_offset(-0.4 * u) for magnet influence
+    - Proper closed-loop simulation
+
+Tests Required:
+- test_rt_loop.cpp: Control loop functionality
+- test_json_commands.cpp: All command types
+- test_physics_coupling.cpp: BPM-magnet interaction
+- test_timing_compliance.cpp: 1kHz operation verification
+
+Verification Criteria:
+- 1kHz operation sustained
+- <100µs jitter p95 achieved
+- PID convergence within 2 seconds
+- All JSON commands work correctly
+- Physics coupling creates realistic behavior
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 7: MAIN APPLICATION INTEGRATION
+=======================================
+Status: NEEDS IMPLEMENTATION PER SPEC
+
+Subtasks:
+7.1 ⏳ Implement main.cpp per specification
+    - Exact includes: hw/bpm.hpp, hw/bic.hpp, hw/magnet.hpp, control/api.hpp, control/loop.hpp, ipc/telemetry_pub.hpp, ipc/control_rep.hpp
+    - Component instantiation: BPM bpm; BIC bic; Magnet mag;
+    - ControlAPI creation: ControlAPI api{bpm, bic, mag};
+    - IPC setup: TelemetryPub pub; ControlRep rep;
+    - RTLoop creation and configuration
+    - PID gains: kp=0.6, ki=0.05, kd=0.0
+    - loop.run(pub, rep) call
+
+7.2 ⏳ Add proper error handling and startup sequence
+    - Component initialization verification
+    - Graceful shutdown on signals
+    - Error reporting
+
+7.3 ⏳ Add operational behaviors per spec
+    - Safe startup: magnet=0, PID integrator=0, setpoint=0
+    - Proper component initialization order
+
+Tests Required:
+- test_main_integration.cpp: Full system startup/shutdown
+- test_signal_handling.cpp: Clean shutdown verification
+- test_initial_conditions.cpp: Safe startup verification
+
+Verification Criteria:
+- Application starts without errors
+- All components initialize correctly
+- Clean shutdown on SIGINT/SIGTERM
+- Initial conditions are safe (magnet=0, etc.)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 8: PYQT OPERATOR CONSOLE
+=================================
+Status: NEEDS IMPLEMENTATION PER SPEC
+
+Subtasks:
+8.1 ⏳ Create requirements.txt
+    - PyQt6
+    - pyqtgraph
+    - pyzmq
+    - Exact versions for reproducibility
+
+8.2 ⏳ Implement TelemetryThread class
+    - Threading.Thread inheritance with daemon=True
+    - ZeroMQ SUB socket to tcp://127.0.0.1:5556
+    - Topic subscription to "telemetry"
+    - Callback-based data delivery
+    - JSON parsing of received payloads
+
+8.3 ⏳ Implement ControlClient class
+    - ZeroMQ REQ socket to tcp://127.0.0.1:5555
+    - send(obj) method with JSON serialization
+    - Response handling and error management
+
+8.4 ⏳ Implement main App widget
+    - QWidget inheritance
+    - Window title: "Beamline Operator Console"
+    - PlotWidget with dual curves (position dots, intensity line)
+    - Control knobs: Kp, Ki, Kd, Hz, SP with exact ranges
+    - Buttons: Apply, Recommission
+    - Data management: 2000 point rolling window
+
+8.5 ⏳ Implement real-time plotting
+    - Position curve: pen=None, symbol='o', symbolSize=3
+    - Intensity curve: pen='r'
+    - Auto-scaling and data windowing
+    - 2000 point limit with tail trimming
+
+8.6 ⏳ Implement control functions
+    - apply(): Send set_pid, set_freq, set_setpoint commands
+    - recommission(): Send recommission command
+    - Proper error handling and user feedback
+
+Tests Required:
+- test_gui_components.py: Widget creation and layout
+- test_zmq_client.py: ZeroMQ communication
+- test_telemetry_thread.py: Data reception
+- test_control_commands.py: All command types
+- test_plotting.py: Real-time plot updates
+
+Verification Criteria:
+- GUI starts without errors
+- Real-time telemetry reception works
+- All control commands function
+- Plots update smoothly
+- 2000 point data management works
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 9: COMPREHENSIVE TESTING FRAMEWORK
+===========================================
+Status: NEEDS IMPLEMENTATION
+
+Subtasks:
+9.1 ⏳ Implement test_pid.cpp per spec
+    - Exact test: PID p; p.kp=1.0; p.ki=0.1; p.kd=0.0; p.setpoint=0.0;
+    - Plant simulation: x += (-0.4*u) for 1000 iterations
+    - Convergence check: assert(std::abs(x) < 0.1)
+    - Step size: 0.001 (1kHz)
+
+9.2 ⏳ Implement test_timing.cpp per spec
+    - 1kHz PeriodicClock test (1000µs period)
+    - 1000 iteration timing measurement
+    - Delta calculation and statistics
+    - Assertion: >900 deltas within 100µs of 1000µs
+
+9.3 ⏳ Implement test_limits.cpp per spec
+    - Exact assertions from specification
+    - Boundary condition testing
+    - Range validation
+
+9.4 ⏳ Add integration tests
+    - Full system startup/shutdown
+    - IPC communication end-to-end
+    - GUI-simulator integration
+
+9.5 ⏳ Add performance tests
+    - 1kHz sustained operation
+    - Jitter measurement and p95 calculation
+    - Memory usage validation
+    - CPU usage monitoring
+
+Tests Required:
+- All unit tests must pass
+- Integration tests must pass
+- Performance tests must meet specifications
+- Stress tests for long-term stability
+
+Verification Criteria:
+- All tests pass consistently
+- Performance targets met
+- No memory leaks detected
+- Timing requirements satisfied
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 10: OPERATIONAL BEHAVIORS
+==================================
+Status: NEEDS IMPLEMENTATION
+
+Subtasks:
+10.1 ⏳ Implement safe startup sequence
+     - magnet=0 initial state
+     - PID integrator=0 initial state
+     - setpoint=0 initial state
+     - Verification of safe initial conditions
+
+10.2 ⏳ Implement recommission functionality
+     - Zero all states as specified
+     - Publish "recommission" event
+     - Reset PID integrator and previous error
+     - Reset magnet to zero
+     - Reset BPM offset to zero
+
+10.3 ⏳ Implement deadline miss handling
+     - Publish deadline_miss=1 in telemetry
+     - Consecutive miss counting
+     - Automatic frequency reduction (20% per spec)
+     - Alarm publishing for frequency changes
+
+Tests Required:
+- test_startup_sequence.cpp: Safe startup verification
+- test_recommission.cpp: State reset verification
+- test_deadline_handling.cpp: Frequency reduction logic
+
+Verification Criteria:
+- Safe startup always achieved
+- Recommission resets all states correctly
+- Deadline miss handling works as specified
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 11: PERFORMANCE OPTIMIZATION
+====================================
+Status: NEEDS IMPLEMENTATION
+
+Subtasks:
+11.1 ⏳ Implement real-time optimizations
+     - Avoid dynamic allocation in hot path
+     - Preallocate all buffers
+     - Use sleep_until over busy-wait
+
+11.2 ⏳ Add optional thread pinning
+     - pthread_setaffinity_np if available
+     - SCHED_FIFO scheduling if permitted
+     - Graceful fallback if not available
+
+11.3 ⏳ Implement jitter measurement
+     - Telemetry channel timing measurement
+     - Statistical analysis of loop timing
+     - P95 jitter calculation and reporting
+
+Tests Required:
+- test_performance.cpp: Sustained 1kHz operation
+- test_jitter.cpp: P95 <100µs verification
+- test_memory_usage.cpp: No dynamic allocation in loop
+
+Verification Criteria:
+- 1kHz sustained without degradation
+- P95 jitter <100µs achieved
+- No memory allocation in hot path
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 12: SYSTEM INTEGRATION AND VALIDATION
+==============================================
+Status: NEEDS IMPLEMENTATION
+
+Subtasks:
+12.1 ⏳ End-to-end system test
+     - Start simulator
+     - Connect GUI
+     - Verify telemetry flow
+     - Test all control commands
+     - Verify PID control performance
+
+12.2 ⏳ Performance validation
+     - 1kHz loop frequency achievement
+     - <100µs jitter p95 measurement
+     - 2-second settling time verification
+     - Memory and CPU usage profiling
+
+12.3 ⏳ Robustness testing
+     - Long-term stability (hours of operation)
+     - Error recovery testing
+     - Network interruption handling
+     - Component failure simulation
+
+Tests Required:
+- test_end_to_end.cpp: Complete system workflow
+- test_performance_targets.cpp: All specifications met
+- test_robustness.cpp: Error conditions and recovery
+
+Verification Criteria:
+- All performance targets achieved
+- System operates stably for extended periods
+- Graceful handling of all error conditions
+- GUI remains responsive under all conditions
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 TASK 13: OPTIONAL EXTENSIONS
+===============================
+Status: FUTURE ENHANCEMENTS
+
+Subtasks:
+13.1 ⏳ CSV logging implementation
+     - Add CSV output to simulator
+     - Implement tools/log_replay.cpp
+     - Data format specification
+
+13.2 ⏳ Moving RMS/jitter metrics
+     - Real-time statistical calculations
+     - Telemetry stream enhancement
+     - Performance monitoring improvements
+
+13.3 ⏳ State persistence
+     - Configuration save/load
+     - State restoration across restarts
+     - Parameter persistence
+
+13.4 ⏳ gRPC alternative
+     - Replace ZeroMQ with gRPC
+     - Bidirectional streaming implementation
+     - Performance comparison
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔄 IMPLEMENTATION WORKFLOW FOR EACH TASK:
+==========================================
+
+For each task above, follow this exact sequence:
+
+STEP 1: IMPLEMENTATION
+- Read technical specification carefully
+- Implement exact interfaces and behavior as specified
+- Follow coding standards and documentation
+- Ensure thread safety where required
+
+STEP 2: UNIT TESTING
+- Write comprehensive unit tests
+- Test all public methods and edge cases
+- Verify specification compliance
+- Include performance tests where applicable
+
+STEP 3: STRESS TESTING
+- High-frequency operation tests
+- Memory pressure tests
+- CPU load tests
+- Long-duration stability tests
+
+STEP 4: INTEGRATION TESTING
+- Test with other components
+- End-to-end workflow verification
+- Error condition testing
+- Performance validation
+
+STEP 5: VERIFICATION
+- Run all tests and ensure 100% pass rate
+- Verify performance targets met
+- Check memory usage and leaks
+- Validate timing requirements
+
+STEP 6: DOCUMENTATION
+- Update code documentation
+- Add usage examples
+- Document any deviations from spec
+- Update this task file
+
+STEP 7: VERSION CONTROL
+- Commit with detailed message
+- Include test results in commit message
+- Ensure commit is self-contained and buildable
+- Push to GitHub with verification
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 CURRENT PRIORITY ORDER:
+==========================
+
+1. **IMMEDIATE**: Fix current build/test issues
+2. **TASK 2**: Complete core primitives to exact specification
+3. **TASK 3**: Implement hardware layer per specification  
+4. **TASK 4**: Control API and limits
+5. **TASK 5**: IPC layer implementation
+6. **TASK 6**: Real-time control loop
+7. **TASK 7**: Main application integration
+8. **TASK 8**: PyQt operator console
+9. **TASK 9**: Comprehensive testing
+10. **TASK 10**: Operational behaviors
+11. **TASK 11**: Performance optimization
+12. **TASK 12**: System validation
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 SUCCESS CRITERIA FOR PROJECT COMPLETION:
+============================================
+
+✅ FUNCTIONAL REQUIREMENTS:
+- Simulator runs at stable 1000 Hz
+- PID control stabilizes beam position within 2 seconds
+- GUI displays live telemetry and accepts commands
+- All JSON commands work correctly
+- Safe startup and recommission functions work
+
+✅ PERFORMANCE REQUIREMENTS:
+- <1 ms loop period maintained
+- <100 µs jitter p95 achieved
+- No dynamic allocation in hot path
+- Stable operation for extended periods
+
+✅ QUALITY REQUIREMENTS:
+- 100% test pass rate
+- No memory leaks detected
+- Clean shutdown on all signals
+- Proper error handling throughout
+- Code matches specification exactly
+
+✅ INTEGRATION REQUIREMENTS:
+- Simulator and GUI work together
+- ZeroMQ communication stable
+- All control commands functional
+- Telemetry streaming works correctly
+- System recovers from error conditions
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Last Updated: September 18, 2025
+Based on: technical_details.txt specification
+Target: Production-ready beamline control simulator

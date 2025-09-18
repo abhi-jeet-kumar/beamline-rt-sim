@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.10)
 project(beamline_rt_sim CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -23,8 +23,22 @@ message(STATUS "ZeroMQ link flags: ${ZeroMQ_LDFLAGS}")
 # Add include directories
 include_directories(${ZeroMQ_INCLUDE_DIRS})
 
-# Header-only libraries placeholder
-# Will add nlohmann/json when implementing the RT loop
+# Create third_party directory for header-only libraries
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/third_party/nlohmann)
+
+# Download nlohmann/json header if not present
+set(JSON_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/third_party/nlohmann/json.hpp)
+if(NOT EXISTS ${JSON_HEADER_PATH})
+    message(STATUS "Downloading nlohmann/json header...")
+    file(DOWNLOAD 
+        "https://github.com/nlohmann/json/releases/download/v3.10.5/json.hpp"
+        ${JSON_HEADER_PATH}
+        SHOW_PROGRESS
+    )
+endif()
+
+# Add include directory for nlohmann/json
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party)
 
 # Main executable (will be populated as we implement components)
 add_executable(beamline_rt_sim
