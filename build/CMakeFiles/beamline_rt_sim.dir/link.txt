@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/beamline_rt_sim.dir/src/main.cpp.o -o beamline_rt_sim  -L/opt/homebrew/Cellar/zeromq/4.3.5_2/lib -lzmq

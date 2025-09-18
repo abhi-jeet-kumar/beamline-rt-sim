@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/abhijeet.kumar/beamline-rt-sim/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
