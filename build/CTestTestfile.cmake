@@ -18,3 +18,7 @@ add_test([=[stress_ring_buffer]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/s
 set_tests_properties([=[stress_ring_buffer]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;74;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
 add_test([=[stress_pid]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/stress_test_pid")
 set_tests_properties([=[stress_pid]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;79;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
+add_test([=[watchdog]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/test_watchdog")
+set_tests_properties([=[watchdog]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;84;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")
+add_test([=[stress_watchdog]=] "/Users/abhijeet.kumar/beamline-rt-sim/build/stress_test_watchdog")
+set_tests_properties([=[stress_watchdog]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;89;add_test;/Users/abhijeet.kumar/beamline-rt-sim/CMakeLists.txt;0;")

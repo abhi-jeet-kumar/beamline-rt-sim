@@ -78,6 +78,16 @@ target_link_libraries(stress_test_pid PRIVATE Threads::Threads)
 target_include_directories(stress_test_pid PRIVATE src)
 add_test(NAME stress_pid COMMAND stress_test_pid)
 
+add_executable(test_watchdog tests/test_watchdog.cpp)
+target_link_libraries(test_watchdog PRIVATE Threads::Threads)
+target_include_directories(test_watchdog PRIVATE src)
+add_test(NAME watchdog COMMAND test_watchdog)
+
+add_executable(stress_test_watchdog tests/stress_test_watchdog.cpp)
+target_link_libraries(stress_test_watchdog PRIVATE Threads::Threads)
+target_include_directories(stress_test_watchdog PRIVATE src)
+add_test(NAME stress_watchdog COMMAND stress_test_watchdog)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)

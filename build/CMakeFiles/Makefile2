@@ -71,6 +71,8 @@ all: CMakeFiles/test_telemetry.dir/all
 all: CMakeFiles/stress_test_clock.dir/all
 all: CMakeFiles/stress_test_ring_buffer.dir/all
 all: CMakeFiles/stress_test_pid.dir/all
+all: CMakeFiles/test_watchdog.dir/all
+all: CMakeFiles/stress_test_watchdog.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -82,6 +84,8 @@ codegen: CMakeFiles/test_telemetry.dir/codegen
 codegen: CMakeFiles/stress_test_clock.dir/codegen
 codegen: CMakeFiles/stress_test_ring_buffer.dir/codegen
 codegen: CMakeFiles/stress_test_pid.dir/codegen
+codegen: CMakeFiles/test_watchdog.dir/codegen
+codegen: CMakeFiles/stress_test_watchdog.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -97,6 +101,8 @@ clean: CMakeFiles/test_telemetry.dir/clean
 clean: CMakeFiles/stress_test_clock.dir/clean
 clean: CMakeFiles/stress_test_ring_buffer.dir/clean
 clean: CMakeFiles/stress_test_pid.dir/clean
+clean: CMakeFiles/test_watchdog.dir/clean
+clean: CMakeFiles/stress_test_watchdog.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -138,7 +144,7 @@ CMakeFiles/beamline_rt_sim.dir/clean:
 CMakeFiles/test_timing.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=15,16 "Built target test_timing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=17,18 "Built target test_timing"
 .PHONY : CMakeFiles/test_timing.dir/all
 
 # Build rule for subdir invocation for target.
@@ -155,7 +161,7 @@ test_timing: CMakeFiles/test_timing.dir/rule
 # codegen rule for target.
 CMakeFiles/test_timing.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=15,16 "Finished codegen for target test_timing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=17,18 "Finished codegen for target test_timing"
 .PHONY : CMakeFiles/test_timing.dir/codegen
 
 # clean rule for target.
@@ -170,7 +176,7 @@ CMakeFiles/test_timing.dir/clean:
 CMakeFiles/test_ring_buffer.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=11,12 "Built target test_ring_buffer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=13,14 "Built target test_ring_buffer"
 .PHONY : CMakeFiles/test_ring_buffer.dir/all
 
 # Build rule for subdir invocation for target.
@@ -187,7 +193,7 @@ test_ring_buffer: CMakeFiles/test_ring_buffer.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ring_buffer.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=11,12 "Finished codegen for target test_ring_buffer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=13,14 "Finished codegen for target test_ring_buffer"
 .PHONY : CMakeFiles/test_ring_buffer.dir/codegen
 
 # clean rule for target.
@@ -202,7 +208,7 @@ CMakeFiles/test_ring_buffer.dir/clean:
 CMakeFiles/test_pid.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_pid.dir/build.make CMakeFiles/test_pid.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_pid.dir/build.make CMakeFiles/test_pid.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=9,10 "Built target test_pid"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=11,12 "Built target test_pid"
 .PHONY : CMakeFiles/test_pid.dir/all
 
 # Build rule for subdir invocation for target.
@@ -219,7 +225,7 @@ test_pid: CMakeFiles/test_pid.dir/rule
 # codegen rule for target.
 CMakeFiles/test_pid.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_pid.dir/build.make CMakeFiles/test_pid.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=9,10 "Finished codegen for target test_pid"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=11,12 "Finished codegen for target test_pid"
 .PHONY : CMakeFiles/test_pid.dir/codegen
 
 # clean rule for target.
@@ -234,7 +240,7 @@ CMakeFiles/test_pid.dir/clean:
 CMakeFiles/test_telemetry.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=13,14 "Built target test_telemetry"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=15,16 "Built target test_telemetry"
 .PHONY : CMakeFiles/test_telemetry.dir/all
 
 # Build rule for subdir invocation for target.
@@ -251,7 +257,7 @@ test_telemetry: CMakeFiles/test_telemetry.dir/rule
 # codegen rule for target.
 CMakeFiles/test_telemetry.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_telemetry.dir/build.make CMakeFiles/test_telemetry.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=13,14 "Finished codegen for target test_telemetry"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=15,16 "Finished codegen for target test_telemetry"
 .PHONY : CMakeFiles/test_telemetry.dir/codegen
 
 # clean rule for target.
@@ -354,6 +360,70 @@ CMakeFiles/stress_test_pid.dir/codegen:
 CMakeFiles/stress_test_pid.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_pid.dir/build.make CMakeFiles/stress_test_pid.dir/clean
 .PHONY : CMakeFiles/stress_test_pid.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_watchdog.dir
+
+# All Build rule for target.
+CMakeFiles/test_watchdog.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=19,20 "Built target test_watchdog"
+.PHONY : CMakeFiles/test_watchdog.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_watchdog.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_watchdog.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_watchdog.dir/rule
+
+# Convenience name for target.
+test_watchdog: CMakeFiles/test_watchdog.dir/rule
+.PHONY : test_watchdog
+
+# codegen rule for target.
+CMakeFiles/test_watchdog.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=19,20 "Finished codegen for target test_watchdog"
+.PHONY : CMakeFiles/test_watchdog.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_watchdog.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/clean
+.PHONY : CMakeFiles/test_watchdog.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/stress_test_watchdog.dir
+
+# All Build rule for target.
+CMakeFiles/stress_test_watchdog.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=9,10 "Built target stress_test_watchdog"
+.PHONY : CMakeFiles/stress_test_watchdog.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/stress_test_watchdog.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/stress_test_watchdog.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles 0
+.PHONY : CMakeFiles/stress_test_watchdog.dir/rule
+
+# Convenience name for target.
+stress_test_watchdog: CMakeFiles/stress_test_watchdog.dir/rule
+.PHONY : stress_test_watchdog
+
+# codegen rule for target.
+CMakeFiles/stress_test_watchdog.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/abhijeet.kumar/beamline-rt-sim/build/CMakeFiles --progress-num=9,10 "Finished codegen for target stress_test_watchdog"
+.PHONY : CMakeFiles/stress_test_watchdog.dir/codegen
+
+# clean rule for target.
+CMakeFiles/stress_test_watchdog.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/clean
+.PHONY : CMakeFiles/stress_test_watchdog.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -230,6 +230,32 @@ stress_test_pid/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_pid.dir/build.make CMakeFiles/stress_test_pid.dir/build
 .PHONY : stress_test_pid/fast
 
+#=============================================================================
+# Target rules for targets named test_watchdog
+
+# Build rule for target.
+test_watchdog: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_watchdog
+.PHONY : test_watchdog
+
+# fast build rule for target.
+test_watchdog/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/build
+.PHONY : test_watchdog/fast
+
+#=============================================================================
+# Target rules for targets named stress_test_watchdog
+
+# Build rule for target.
+stress_test_watchdog: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stress_test_watchdog
+.PHONY : stress_test_watchdog
+
+# fast build rule for target.
+stress_test_watchdog/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/build
+.PHONY : stress_test_watchdog/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -325,6 +351,30 @@ tests/stress_test_ring_buffer.s: tests/stress_test_ring_buffer.cpp.s
 tests/stress_test_ring_buffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_ring_buffer.dir/build.make CMakeFiles/stress_test_ring_buffer.dir/tests/stress_test_ring_buffer.cpp.s
 .PHONY : tests/stress_test_ring_buffer.cpp.s
+
+tests/stress_test_watchdog.o: tests/stress_test_watchdog.cpp.o
+.PHONY : tests/stress_test_watchdog.o
+
+# target to build an object file
+tests/stress_test_watchdog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/tests/stress_test_watchdog.cpp.o
+.PHONY : tests/stress_test_watchdog.cpp.o
+
+tests/stress_test_watchdog.i: tests/stress_test_watchdog.cpp.i
+.PHONY : tests/stress_test_watchdog.i
+
+# target to preprocess a source file
+tests/stress_test_watchdog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/tests/stress_test_watchdog.cpp.i
+.PHONY : tests/stress_test_watchdog.cpp.i
+
+tests/stress_test_watchdog.s: tests/stress_test_watchdog.cpp.s
+.PHONY : tests/stress_test_watchdog.s
+
+# target to generate assembly for a file
+tests/stress_test_watchdog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stress_test_watchdog.dir/build.make CMakeFiles/stress_test_watchdog.dir/tests/stress_test_watchdog.cpp.s
+.PHONY : tests/stress_test_watchdog.cpp.s
 
 tests/test_pid.o: tests/test_pid.cpp.o
 .PHONY : tests/test_pid.o
@@ -422,6 +472,30 @@ tests/test_timing.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/tests/test_timing.cpp.s
 .PHONY : tests/test_timing.cpp.s
 
+tests/test_watchdog.o: tests/test_watchdog.cpp.o
+.PHONY : tests/test_watchdog.o
+
+# target to build an object file
+tests/test_watchdog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/tests/test_watchdog.cpp.o
+.PHONY : tests/test_watchdog.cpp.o
+
+tests/test_watchdog.i: tests/test_watchdog.cpp.i
+.PHONY : tests/test_watchdog.i
+
+# target to preprocess a source file
+tests/test_watchdog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/tests/test_watchdog.cpp.i
+.PHONY : tests/test_watchdog.cpp.i
+
+tests/test_watchdog.s: tests/test_watchdog.cpp.s
+.PHONY : tests/test_watchdog.s
+
+# target to generate assembly for a file
+tests/test_watchdog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_watchdog.dir/build.make CMakeFiles/test_watchdog.dir/tests/test_watchdog.cpp.s
+.PHONY : tests/test_watchdog.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -435,10 +509,12 @@ help:
 	@echo "... stress_test_clock"
 	@echo "... stress_test_pid"
 	@echo "... stress_test_ring_buffer"
+	@echo "... stress_test_watchdog"
 	@echo "... test_pid"
 	@echo "... test_ring_buffer"
 	@echo "... test_telemetry"
 	@echo "... test_timing"
+	@echo "... test_watchdog"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -451,6 +527,9 @@ help:
 	@echo "... tests/stress_test_ring_buffer.o"
 	@echo "... tests/stress_test_ring_buffer.i"
 	@echo "... tests/stress_test_ring_buffer.s"
+	@echo "... tests/stress_test_watchdog.o"
+	@echo "... tests/stress_test_watchdog.i"
+	@echo "... tests/stress_test_watchdog.s"
 	@echo "... tests/test_pid.o"
 	@echo "... tests/test_pid.i"
 	@echo "... tests/test_pid.s"
@@ -463,6 +542,9 @@ help:
 	@echo "... tests/test_timing.o"
 	@echo "... tests/test_timing.i"
 	@echo "... tests/test_timing.s"
+	@echo "... tests/test_watchdog.o"
+	@echo "... tests/test_watchdog.i"
+	@echo "... tests/test_watchdog.s"
 .PHONY : help
 
 
