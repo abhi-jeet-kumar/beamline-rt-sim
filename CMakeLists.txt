@@ -138,6 +138,12 @@ target_link_libraries(test_rt_loop PRIVATE ${ZeroMQ_LDFLAGS} Threads::Threads)
 target_include_directories(test_rt_loop PRIVATE src)
 add_test(NAME rt_loop COMMAND test_rt_loop)
 
+# Machine Protection System tests
+add_executable(test_machine_protection tests/test_machine_protection.cpp)
+target_link_libraries(test_machine_protection PRIVATE Threads::Threads)
+target_include_directories(test_machine_protection PRIVATE src)
+add_test(NAME machine_protection COMMAND test_machine_protection)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_limits tests/test_limits.cpp)
 # target_link_libraries(test_limits PRIVATE Threads::Threads)

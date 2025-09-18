@@ -7,10 +7,12 @@
 #include "../control/limits.hpp"
 #include "../hw/simple_bpm.hpp"
 #include "../hw/simple_magnet.hpp"
+#include "../safety/machine_protection_system.hpp"
 #include <atomic>
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <iostream>
 #include <zmq.h>
 #include <nlohmann/json.hpp> // header-only JSON (add to third_party or vendor)
 using json = nlohmann::json;
@@ -39,6 +41,9 @@ struct RTLoop {
   std::atomic<bool> emergency_stop{false};   ///< Emergency stop state
   std::atomic<uint64_t> loop_count{0};       ///< Loop iteration counter
   std::atomic<uint64_t> deadline_misses{0};  ///< Deadline miss counter
+  
+  // Machine Protection System
+  MachineProtectionSystem mps;
 
   /**
    * @brief Constructor
@@ -46,7 +51,19 @@ struct RTLoop {
    * @param bpm BPM reference  
    * @param mag Magnet reference
    */
-  RTLoop(ControlAPI& a, BPM& bpm, Magnet& mag): api(a), bpm_ref(bpm), magnet_ref(mag) {}
+  RTLoop(ControlAPI& a, BPM& bpm, Magnet& mag): api(a), bpm_ref(bpm), magnet_ref(mag) {
+    // Set up MPS beam abort callback
+    mps.set_beam_abort_callback([this]() {
+      emergency_stop.store(true);
+      control_enabled.store(false);
+      api.set_magnet(0.0);
+    });
+    
+    // Set up MPS alarm callback  
+    mps.set_alarm_callback([](const std::string& message) {
+      std::cout << "MPS ALARM: " << message << std::endl;
+    });
+  }
 
   /**
    * @brief Main control loop execution
@@ -66,6 +83,14 @@ struct RTLoop {
       // read sensors
       double pos = api.read_pos();
       double intensity = api.read_intensity();
+      
+      // Check Machine Protection System
+      bool mps_safe = mps.check_safety(intensity, pos);
+      if (!mps_safe) {
+        // MPS triggered abort - force emergency stop
+        emergency_stop.store(true);
+        control_enabled.store(false);
+      }
 
       // control (only if enabled and not in emergency stop)
       double u = 0.0;
@@ -91,7 +116,9 @@ struct RTLoop {
       // publish telemetry
       double t = std::chrono::duration<double>(end - t0).count();
       json j = {{"t",t},{"pos",pos},{"intensity",intensity},
-                {"mag",api.get_magnet()},{"deadline_miss", wd.is_tripped()?1:0}};
+                {"mag",api.get_magnet()},{"deadline_miss", wd.is_tripped()?1:0},
+                {"mps_safe", mps.is_beam_permitted()},
+                {"mps_abort", mps.is_abort_active()}};
       pub.send(j.dump());
 
       // non-blocking control handling
@@ -138,6 +165,7 @@ struct RTLoop {
       bpm_ref.inject_offset(0.0);
       emergency_stop.store(false);
       control_enabled.store(true);
+      mps.reset_mps(); // Reset machine protection system
       return "{\"ok\":true}";
     } else if (j["cmd"] == "emergency_stop"){
       emergency_stop.store(true);
@@ -161,6 +189,8 @@ struct RTLoop {
         {"deadline_misses", deadline_misses.load()},
         {"control_enabled", control_enabled.load()},
         {"emergency_stop", emergency_stop.load()},
+        {"mps_safe", mps.is_beam_permitted()},
+        {"mps_abort_count", mps.get_abort_count()},
         {"pid_gains", {{"kp", pid.kp}, {"ki", pid.ki}, {"kd", pid.kd}}},
         {"setpoint", pid.setpoint}
       };
