@@ -47,6 +47,11 @@ target_link_libraries(test_timing PRIVATE Threads::Threads)
 target_include_directories(test_timing PRIVATE src)
 add_test(NAME timing COMMAND test_timing)
 
+add_executable(test_ring_buffer tests/test_ring_buffer.cpp)
+target_link_libraries(test_ring_buffer PRIVATE Threads::Threads)
+target_include_directories(test_ring_buffer PRIVATE src)
+add_test(NAME ring_buffer COMMAND test_ring_buffer)
+
 # Additional tests (will be uncommented as we implement components)
 # add_executable(test_pid tests/test_pid.cpp)
 # add_executable(test_limits tests/test_limits.cpp)

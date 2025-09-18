@@ -1,19 +1,19 @@
-Start testing: Sep 18 12:42 IST
+Start testing: Sep 18 12:50 IST
 ----------------------------------------------------------
-1/1 Testing: timing
-1/1 Test: timing
+1/2 Testing: timing
+1/2 Test: timing
 Command: "/Users/abhijeet.kumar/beamline-rt-sim/build/test_timing"
 Directory: /Users/abhijeet.kumar/beamline-rt-sim/build
-"timing" start time: Sep 18 12:42 IST
+"timing" start time: Sep 18 12:50 IST
 Output:
 ----------------------------------------------------------
 Testing PeriodicClock timing accuracy...
 Test 1: 1kHz timing accuracy
   Expected total time: 1000000 μs
-  Actual total time: 1000168 μs
-  Timing error: 0.0168%
-  Periods within ±100μs: 97.5%
-  Jitter (std dev): 31.0695 μs
+  Actual total time: 1000204 μs
+  Timing error: 0.0204%
+  Periods within ±100μs: 98.1%
+  Jitter (std dev): 29.6076 μs
 
 Test 2: Period change functionality
   Period change test passed
@@ -22,15 +22,51 @@ Test 3: Time-to-next functionality
   Time-to-next test passed
 
 Test 4: High frequency (10kHz) short test
-  High frequency accuracy: 99%
+  High frequency accuracy: 96%
 
 ✅ All PeriodicClock tests passed!
 <end of output>
-Test time =   1.38 sec
+Test time =   1.02 sec
 ----------------------------------------------------------
 Test Passed.
-"timing" end time: Sep 18 12:42 IST
+"timing" end time: Sep 18 12:50 IST
 "timing" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-End testing: Sep 18 12:42 IST
+2/2 Testing: ring_buffer
+2/2 Test: ring_buffer
+Command: "/Users/abhijeet.kumar/beamline-rt-sim/build/test_ring_buffer"
+Directory: /Users/abhijeet.kumar/beamline-rt-sim/build
+"ring_buffer" start time: Sep 18 12:50 IST
+Output:
+----------------------------------------------------------
+Testing RingBuffer functionality...
+Test 1: Basic operations
+  Basic operations test passed
+Test 2: Overflow behavior
+  Overflow behavior test passed
+Test 3: Complex data types
+  Complex data types test passed
+Test 4: Snapshot functionality
+  Snapshot functionality test passed
+Test 5: Clear functionality
+  Clear functionality test passed
+Test 6: Thread safety
+  Thread safety test passed
+  Consumer performed 1000 total element reads
+Test 7: Performance benchmark
+  Performance: 0.217 ns per push operation
+  Throughput: 4.60829e+09 pushes per second
+  For_each: 3.2375 ns per element read
+  Performance benchmark passed
+
+✅ All RingBuffer tests passed!
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ring_buffer" end time: Sep 18 12:50 IST
+"ring_buffer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 18 12:50 IST

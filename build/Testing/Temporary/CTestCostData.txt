@@ -1,2 +1,3 @@
-timing 1 1.3816
+timing 2 0.511665
+ring_buffer 1 0.00576037
 ---

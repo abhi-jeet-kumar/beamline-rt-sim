@@ -1,0 +1,35 @@
+Start testing: Sep 18 12:44 IST
+----------------------------------------------------------
+1/2 Testing: timing
+1/2 Test: timing
+Command: "/Users/abhijeet.kumar/beamline-rt-sim/build/test_timing"
+Directory: /Users/abhijeet.kumar/beamline-rt-sim/build
+"timing" start time: Sep 18 12:44 IST
+Output:
+----------------------------------------------------------
+Testing PeriodicClock timing accuracy...
+Test 1: 1kHz timing accuracy
+  Expected total time: 1000000 μs
+  Actual total time: 1000208 μs
+  Timing error: 0.0208%
+  Periods within ±100μs: 95.3%
+  Jitter (std dev): 118.842 μs
+
+Test 2: Period change functionality
+  Period change test passed
+
+Test 3: Time-to-next functionality
+  Time-to-next test passed
+
+Test 4: High frequency (10kHz) short test
+  High frequency accuracy: 99%
+
+✅ All PeriodicClock tests passed!
+<end of output>
+Test time =   1.02 sec
+----------------------------------------------------------
+Test Passed.
+"timing" end time: Sep 18 12:44 IST
+"timing" time elapsed: 00:00:01
+----------------------------------------------------------
+

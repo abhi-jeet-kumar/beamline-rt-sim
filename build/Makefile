@@ -152,6 +152,19 @@ test_timing/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timing.dir/build.make CMakeFiles/test_timing.dir/build
 .PHONY : test_timing/fast
 
+#=============================================================================
+# Target rules for targets named test_ring_buffer
+
+# Build rule for target.
+test_ring_buffer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_ring_buffer
+.PHONY : test_ring_buffer
+
+# fast build rule for target.
+test_ring_buffer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/build
+.PHONY : test_ring_buffer/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -175,6 +188,30 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/beamline_rt_sim.dir/build.make CMakeFiles/beamline_rt_sim.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+tests/test_ring_buffer.o: tests/test_ring_buffer.cpp.o
+.PHONY : tests/test_ring_buffer.o
+
+# target to build an object file
+tests/test_ring_buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/tests/test_ring_buffer.cpp.o
+.PHONY : tests/test_ring_buffer.cpp.o
+
+tests/test_ring_buffer.i: tests/test_ring_buffer.cpp.i
+.PHONY : tests/test_ring_buffer.i
+
+# target to preprocess a source file
+tests/test_ring_buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/tests/test_ring_buffer.cpp.i
+.PHONY : tests/test_ring_buffer.cpp.i
+
+tests/test_ring_buffer.s: tests/test_ring_buffer.cpp.s
+.PHONY : tests/test_ring_buffer.s
+
+# target to generate assembly for a file
+tests/test_ring_buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ring_buffer.dir/build.make CMakeFiles/test_ring_buffer.dir/tests/test_ring_buffer.cpp.s
+.PHONY : tests/test_ring_buffer.cpp.s
 
 tests/test_timing.o: tests/test_timing.cpp.o
 .PHONY : tests/test_timing.o
@@ -210,10 +247,14 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... beamline_rt_sim"
+	@echo "... test_ring_buffer"
 	@echo "... test_timing"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... tests/test_ring_buffer.o"
+	@echo "... tests/test_ring_buffer.i"
+	@echo "... tests/test_ring_buffer.s"
 	@echo "... tests/test_timing.o"
 	@echo "... tests/test_timing.i"
 	@echo "... tests/test_timing.s"

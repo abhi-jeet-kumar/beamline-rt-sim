@@ -10,5 +10,11 @@
   "command": "/usr/bin/c++  -I/opt/homebrew/Cellar/zeromq/4.3.5_2/include -I/opt/homebrew/Cellar/libsodium/1.0.20/include -I/Users/abhijeet.kumar/beamline-rt-sim/src -O3 -DNDEBUG -std=gnu++20 -arch arm64 -o CMakeFiles/test_timing.dir/tests/test_timing.cpp.o -c /Users/abhijeet.kumar/beamline-rt-sim/tests/test_timing.cpp",
   "file": "/Users/abhijeet.kumar/beamline-rt-sim/tests/test_timing.cpp",
   "output": "CMakeFiles/test_timing.dir/tests/test_timing.cpp.o"
+},
+{
+  "directory": "/Users/abhijeet.kumar/beamline-rt-sim/build",
+  "command": "/usr/bin/c++  -I/opt/homebrew/Cellar/zeromq/4.3.5_2/include -I/opt/homebrew/Cellar/libsodium/1.0.20/include -I/Users/abhijeet.kumar/beamline-rt-sim/src -O3 -DNDEBUG -std=gnu++20 -arch arm64 -o CMakeFiles/test_ring_buffer.dir/tests/test_ring_buffer.cpp.o -c /Users/abhijeet.kumar/beamline-rt-sim/tests/test_ring_buffer.cpp",
+  "file": "/Users/abhijeet.kumar/beamline-rt-sim/tests/test_ring_buffer.cpp",
+  "output": "CMakeFiles/test_ring_buffer.dir/tests/test_ring_buffer.cpp.o"
 }
 ]
